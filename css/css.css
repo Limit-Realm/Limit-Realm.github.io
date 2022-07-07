@@ -23,6 +23,7 @@ li a {
     padding: 14px 16px;
     text-decoration: none;
     transition: all .5s ease;
+    border-bottom: 0px solid;
 }
 .ou {
     background-color: #4CAF50;
