@@ -10,6 +10,7 @@ ul {
     margin-left: -7.8px;
     padding-left: 5%;
     height: 55px;
+    z-index:1000;
 }
 li {
  float: left;
@@ -60,13 +61,16 @@ div {
     text-shadow: 1.2px 1.2px 0px red, -1.2px -1.2px 0px blue, 6.2px 6.2px 2.2px #3c3c3c;
 }
 button {
-    background-color: #c8a6f0;
+    background-color: #aaaaaa;
+    color: #000000;
     border-radius: 20px;
     box-shadow: 2px 2px 1px #3c3c3c;
     font-size: 18px;
+    transition:all .3s ease;
 }
 button:hover {
-    background-color: #a15fec;
+    transform: translateY(-5px);
+    background-color: #c2c2c2;
 }
 table {
     border-radius: 10px;
@@ -87,7 +91,7 @@ a {
     text-decoration: none;
 }
 a:hover:not(.ou) {
-    color: rgb(141, 63, 230);
+    color: rgb(50, 50, 250);
 }
 img:hover {
     animation: show2 1.5s;
