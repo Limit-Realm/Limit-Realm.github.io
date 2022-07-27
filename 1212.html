@@ -1,136 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>评论区留言</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
+        .box {
+            width: 750px;
+            height: 800px;
         }
-
-        .w {
-            width: 600px;
-            margin: 0 auto;
-        }
-
-        .bigBox {
-            width: 600px;
-            margin-top: 20px;
-        }
-
-        textarea {
-            width: 600px;
-            height: 100px;
-            border: 0;
-            outline: 0;
-            border: 1px solid black;
-            resize: none;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .btnBox {
-            width: 100%;
-            height: 40px;
+        .box .h_box {
             position: relative;
+            width: 100%;
+            height: 120px;
         }
-
-        #btn {
-            display: block;
-            width: 100px;
-            height: 40px;
+        .box .h_box textarea {
+            font-size: 14px;
+            border-radius: 4px;
+            background-color: #f4f5f7;
+            padding: 5px 10px;
+            margin: 15px;
+            resize: none;
+        }
+        .box .h_box button {
             position: absolute;
-            right: 0;
-            background-color: #FF7D40;
-            border: 0;
+            top: 30px;
+            width: 70px;
+            height: 64px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #00a1d6;
+            cursor: pointer;
+            background-color: #00a1d6;
             color: #fff;
+            padding: 4px 15px;
         }
-
-        ul li {
-            width: 600px;
-            height: 60px;
-            line-height: 60px;
-            background-color: #3c3c3c;
-            color: #fff;
-            margin-top: 10px;
-            padding: 0 20px;
-            list-style: none;
-            box-sizing: border-box;
+        .b_box {
+            width: 100%;
+            height: 670px;
         }
-
-        ul li a {
+        .msg_box {
+            width: 100%;
+        }
+        .b_box .msg_box p{
+            width: 585px;
+            font-size: 18px;
+            margin: 10px 0px 0px 17px;
+        }
+        .b_box .msg_box span {
+            margin-left: 17px;
+            font-size: 12px;
+            color: #666666;
+        }
+        .b_box .msg_box p a {
             float: right;
             text-decoration: none;
-            color: #fff;
+            font-size: 14px;
+            color: #666;
         }
-
-        ul li input {
-            float: right;
-            margin: 20px 16px 0 0;
+        .b_box .msg_box p a:hover {
+            color: brown;
         }
-
+    </style>
 </head>
 <body>
-    <div class="bigBox w">
-        <textarea name="" id="txt" cols="30" rows="10"></textarea>
-        <div class="btnBox">
-            <button id="btn">发布评论</button>
+    <div class="box">
+        <div class="h_box">
+            <textarea name="msg" cols="80" rows="5" placeholder="请文明发表评论"></textarea>
+            <button type="submit">发表评论</button>
         </div>
-        <ul id="utxt">
-
-        </ul>
-
-</body>
-<script>
-        //通过id获取标签
-        var txt = document.getElementById("txt")
-        var btn = document.getElementById("btn")
-        var utxt = document.getElementById("utxt")
-        //创建点击事件
-        btn.onclick = function () {
-            //判断是否输入了评论
-            if (txt.value === "") { //这个表达式表示没有文本输入
-                alert("请输入评论") //弹窗提醒
-            } else { //如果有文本输入就执行下面的代码
-                //创建li标签
-                var li = document.createElement("li")
-                //将输入的内容赋给li
-                li.innerText = txt.value
-                //同时清空输入框
-                txt.value = ""
+        <div class="b_box">
+        </div>
+    </div>
+    <script>
+        // 获取元素
+        var btn = document.querySelector("button");
+        var textarea = document.querySelector("textarea")
+        var b_box = document.querySelector(".b_box");
+        // 鼠标点击，改变样式
+        textarea.onmouseover =function(){
+            this.style.backgroundColor = '#fff';
+            this.style.border = '1px solid blue';
+        }
+        textarea.onmouseout =function(){
+            this.style.backgroundColor = '#f4f5f7';
+            this.style.border = '';
+        }
+        textarea.onblur =function(){
+            this.style.backgroundColor = '#f4f5f7';
+            this.style.border = '';
+        }
+        // 点击按钮注册事件
+        btn.onclick = function(){
+            textarea.style.backgroundColor = '#fff';
+            textarea.style.border = '1px solid blue';
+            if(textarea.value == ''){
+                alert('内容不能为空');
+                return false;
+            }else{
+                // 发布评论时创建动态节点，div盒子里面包含p和span元素
+                var msg_box = document.createElement('div');
+                var p = document.createElement('p')
+                var span =document.createElement('span')
+                // 获取时间
+                var date = new Date();
+                var month = date.getMonth()+1;
+                // 添加节点msg_box到父盒子b_box里
+                b_box.insertBefore(msg_box,b_box.children[0]);
+                // 给盒子添加样式
+                msg_box.className='msg_box';
+                // 将文本框的文字内容添加到p元素里，并给p元素增加删除功能
+                p.innerHTML = textarea.value + "<a href='javascript:;'>删除</a>";
+                // 将时间添加到span元素里
+                span.innerHTML = date.getFullYear()+'-'+month+'-'+date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+                // 给msg_box添加p和span元素
+                msg_box.appendChild(p);
+                msg_box.appendChild(span);
+                // 发表成功后，清空文本框内容
+                textarea.value='';
+                // 删除元素
+                var a = document.querySelectorAll('a');
+                for (var i=0;i<a.length;i++){
+                    a[i].onclick = function(){
+                        b_box.removeChild(this.parentNode.parentNode);
+                    }
+                }
             }
-            //将li标签放入ul标签中
-            utxt.appendChild(li)
-            //创建删除按钮，用a标签来创建
-            var del = document.createElement("a")
-            //给a标签属性
-            del.href = "#"
-            del.innerHTML = "删除"
-            //删除按钮的点击事件
-            del.onclick = function () {
-                //删除自己的父元素，也就是删除按钮所在的li
-                del.parentNode.remove()
-                txt.value = ""
-            }
-            //将删除按钮放入li中
-            li.appendChild(del)
-            //创建修改按钮
-            var xg = document.createElement("input")
-            xg.type = "button"
-            xg.value = "修改"
-            // var box = document.createElement("input")
-            xg.onclick = function () {
-                //点击修改后弹出输入框，并且将文本内容赋给li
-                var i = prompt("请输入修改的内容")
-                this.parentNode.innerText = i
-                //重新添加删除修改按钮
-                li.appendChild(del)
-                li.appendChild(xg)
-            }
-            //给li添加修改按钮
-            li.appendChild(xg)
         }
     </script>
-
+</body>
 </html>
