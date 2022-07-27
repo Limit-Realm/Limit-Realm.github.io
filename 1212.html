@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{ 
+               margin: 0;
+               padding: 0;
+		}
+		.box{  /*设置最外层盒子*/
+			width: 600px;
+			border: 1px solid #aaa;
+			padding:  20px 10px;
+			margin: 100px auto;
+		}
+		#plTxt{ /*设置文本域*/
+			width: 450;
+			resize: none;/*防止用户拖拽*/
+		}
+		.box ul{ /*将ul列表去除前面的点*/
+			list-style: none;
+		}
+		.box ul li{ /*设置li中的评论文字样式*/
+			width: 450px;
+			line-height: 30px;
+			border-bottom: 1px dotted #aaa;
+			margin-left: 50px;
+		}
+		.box ul li a{ /*将删除的样式更改颜色，向右浮动，没有下划线*/
+			color: orange;
+			float: right; 
+			text-decoration: none;
+			
+		}
+		.box ul li .time{  /*将li中的时间改为向右浮动和改颜色*/
+			color: #4f0;
+			float: right;
+		}
+	</style>
+	<script>
+		    window.onload = function(){
+		    function $(id){
+		    	return document.getElementById(id);
+		    }
+		    var ul=document.createElement('ul'); //创建ul标签
+		      $('pl').appendChild(ul);    //把ul标签放在div里面
+		      $('btn').onclick = function (){
+                 var txt = $('plTxt').value;  //此时不能用$('plTxt').innerHTML,成对的标签使用innerHTNL,获得里面文字;
+                 if(txt.length==0){        //判断输入为空的情况；
+                 	alert('不能发表为空的评论');
+                 }else{
+                 	 var li=document.createElement('li');  //创建li标签
+                 	 ul.appendChild(li);     // li添加为ul的子标签
+                 	 txt = txt+ "<a href='javascript:void(0)'>删除</a>" +  "<span class='time'>" + new Date().toLocaleTimeString()  + "</span>";
+                      li.innerHTML = txt;    //将文本赋给li标签中显示
+                   var dels =document.getElementsByTagName('a'); //获取所有标签a的id存到数组中
+                   for(var j=0; j<dels.length; j++){
+                   	dels[j].onclick=function(){    //将所有a标签设置点击事件
+  						                                           //删除当前评论，就是删除当前“删除”所在超链接的li
+                       ul.removeChild(this.parentNode);
+                   	}
+                   }
+                 }
+             }
+		    }
+	</script>
+</head>
+<body>
+	   <div class="box" id="pl">
+		<span>发表评论:</span>
+		<textarea  id="plTxt" cols="30" rows="10"></textarea>
+		<input type="button" value="评论" id="btn" >
+	   </div>
+	
+</body>
+</html>
