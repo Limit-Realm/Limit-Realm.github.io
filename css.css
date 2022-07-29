@@ -94,7 +94,8 @@ a:hover:not(.ou) {
     color: rgb(50, 50, 250);
 }
 img:hover {
-    animation: show2 1.5s;
+    transition: all .5s ease;
+    transform: rotate(360deg);
 }
 .divone {
     background-color: #131212;
@@ -151,8 +152,4 @@ h3 {
 }
 .othersh:hover {
     transform: translateY(-10px);
-}
-body > div.main > div.sh > table > tr > td > img:hover {
-    transition: all .5s ease;
-    transform: rotate(360deg);
 }
