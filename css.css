@@ -152,7 +152,7 @@ h3 {
 .othersh:hover {
     transform: translateY(-10px);
 }
-body > div.main > div.sh > table > tbody > tr > td > img:hover {
+body > div.main > div.sh > table > tr > td > img:hover {
     transition: all .5s ease;
     transform: rotate(360deg);
 }
