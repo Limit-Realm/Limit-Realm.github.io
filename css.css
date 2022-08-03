@@ -154,5 +154,6 @@ ul {
             }
             .othersh:hover {
                 transition: all .5s ease;
+                box-shadow: 2px 2px 5px #3e3e3e, -2px -2px 5px #3e3e3e;  
                 transform: translateY(-10px);
             }
