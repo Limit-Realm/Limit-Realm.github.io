@@ -144,6 +144,7 @@ ul {
                 background-color: rgb(228, 227, 227);
             }
             .othersh {
+                transition: all .5s ease;
                 background-color: #ffffff;
                 margin: 2%;
                 margin-left: 8%;
@@ -153,7 +154,6 @@ ul {
                 text-align: center;
             }
             .othersh:hover {
-                transition: all .5s ease;
                 box-shadow: 2px 2px 5px #3e3e3e, -2px -2px 5px #3e3e3e;  
                 transform: translateY(-10px);
             }
