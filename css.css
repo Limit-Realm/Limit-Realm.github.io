@@ -153,5 +153,6 @@ ul {
                 text-align: center;
             }
             .othersh:hover {
+                transition: all .5s ease;
                 transform: translateY(-10px);
             }
